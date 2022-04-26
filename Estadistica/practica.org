@@ -1,0 +1,113 @@
+
+#+TITLE: Práctica completa de Estadística
+#+DATE: 2022
+
+
+#+begin_export latex
+\clearpage
+#+end_export
+* Probabilidad
+
+
+#+begin_export latex
+\clearpage
+#+end_export
+* Variables aleatorias
+
+** Ejercicio 1
+*Problema*
+La distribución de probabilidad de X: "número de errores en un canal de transmisión" se presenta en la siguiente tabla:
+
+|------+------+------+------+------+------|
+| X    |    0 |    1 |    2 |    3 |    4 |
+|------+------+------+------+------+------|
+| f(x) | 0.41 | 0.37 | 0.16 | 0.05 | 0.01 |
+|------+------+------+------+------+------|
+
+Determinar la función acumulativa de X y utilizar la para determinar la probabilidad de encontrar más de 3 errores en el canal.
+
+*Resolución*
+|------+---+------+------+------+------+----|
+| X    | 0 |    1 |    2 |    3 |    4 | >4 |
+|------+---+------+------+------+------+----|
+| F(x) | 0 | 0.41 | 0.78 | 0.94 | 0.99 |  1 |
+|------+---+------+------+------+------+----|
+
+La probabilidad de encontrar más de 3 errores es
+
+$$
+P(X>3) = 1 - P(X \leq 3) = 1 - 0.99 = 0.01 \Rightarrow 1\%.
+$$
+
+** Ejercicio 2
+*Problema*\\
+Se está realizando un estudio en un sistema y se analiza una variable aleatoria X con función dada por:
+
+
+\begin{align*}
+F(x) = 
+\left\{
+      \begin{array}{ll}
+            1-e^{-x} & \mbox{si } x > 0 \\
+	    0        & \mbox{si } x \leq 0
+      \end{array}
+\right.
+\end{align*}
+
+a) Obtener P(X>2).\\
+
+b) Considerar una nueva variable aleatoria Y que también es necesaria para el estudio de manera que la función de densidad conjunta de las variables es:
+
+\begin{align*}
+f(x,y) =
+\left\{
+      \begin{array}{ll}
+            ye^{-(x+y)} & \mbox{si } x > 0 \land y > 0 \\
+            0           & \mbox{en otro caso}
+       \end{array}
+\right.
+\end{align*}
+
+Indicar de forma razonada si se puede considerar que ambas variables son independientes ya que de esta conclusión depende parte del estudio.\\
+
+c) En cualquier caso, calcular P(Y < 1 | X > 2).\\
+
+\\
+*Resolución*
+\\
+*a)* La forma más rápida de hallar P(X>2) es mediante la función acumulativa que nos da el problema F(x), la cual por definición es la probabilidad de que la variable X sea menor o igual a cierto valor. Entonces,
+
+\begin{align*}
+P(X > 2 ) & = 1 - P(X \leq 2 ) \quad \quad \mbox{Uso del complemento}\\
+          & = 1 - F(2)\\
+          & = 1 - (1 - e^{-2})\\
+          & = 1 - 0,86 = 0,14 \Rightarrow \mathbf{14\%}
+\end{align*}
+
+
+La otra forma para hallar P(X>2) es hallando f(x) e integrando en el intervalo que nos interese saber su probabilidad. Para hallar f(x) mediante F(x), derivamos F(x) respecto de x.
+
+\begin{align*}
+\frac{d}{dx} F(x) &= \frac{d}{dx}(1-e^{-x})\\
+                  &= \frac{d}{dx} 1 - \frac{d}{dx} e^{-x}\\
+             \mathbf{f(x)} &= \mathbf{e^{-x}}
+\end{align*}
+
+Y ahora integramos respecto a x en el intervalo [2,+\infty)
+
+\begin{align*}
+P(X>2) = \int_2^{+ \infty} f(x)dx &= \int_2^{+ \infty} e^{-x} dx\\
+       &= -e^{-x} \Big]_2^{+ \infty}\\
+       &= e^{-2} - e^{-\infty} = 0,13 \Rightarrow \mathbf{13\%}
+\end{align*}
+
+*b)* 
+
+
+
+#+begin_export latex
+\clearpage
+#+end_export
+* Características
+
+* Ejercicio 1

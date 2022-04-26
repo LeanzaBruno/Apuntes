@@ -1,0 +1,202 @@
+#+TITLE: Práctica completa de Electrónica digital
+#+LANGUAGE: fr
+
+#+begin_export latex
+\tableofcontents
+\clearpage
+#+end_export
+* Sistemas numéricos y codificación
+
+#+begin_export latex
+\clearpage
+#+end_export
+* Álgebra de Boole y funciones lógicas
+
+#+begin_export latex
+\clearpage
+#+end_export
+* Circuitos combinacionales
+
+** Ejercicio 1
+
+_Enunciado_:
+
+Qué es un sistema combinacional? Para qué sirve? Qué parte de un algoritmo puede implementar?\\
+
+\noindent
+_Resolución_:
+
+Un sistema digital combinacional es un circuito lógico en el cual sus salidas dependen exclusivamente de sus entradas y no tiene memoria o retroalimentación.
+Son las máquinas abstractas más sencilla de la teoría de autómatas que /sólo permiten resolver problemas lógicos/.
+------------------------------
+
+** Ejercicio 2
+_Enunciado_:
+
+A qué se denomina lógica de tres estados?\\
+
+\noindent
+_Resolución_:
+
+Lógica de tres estados significa que existe un tercer estado llamado /estado de impedancia/ el cual indica si el circuito está activo o no. 
+
+------------------------------
+
+** Ejercicio 3
+_Enunciado_:
+
+Explique qué es y cómo funciona un codificador y un decodificador. ¿Para qué sirve? ¿En qué tipo de problemas se utiliza? De ejemplos.
+
+a. Diseñe y Simule un codificador decimal a BCD. Compare el codificador desarrollado con el presentado en la hoja de datos del componente CD40147;
+
+b. Diseñe y Simule un decodificador BCD a decimal. Compare el decodificador desarrollado con el presentado en la hoja de datos del componente CD4028;
+
+c. Diseñe y Simule un codificador de ocho líneas a binario natural con prioridad de las entradas. Compare el codificador desarrollado con el presentado en la hoja de datos del componente CD4532.
+Implemente los circuitos diseñados.\\
+
+\noindent
+_Resolución_:
+
+Un *codificador* es un circuito combinacional que convierte símbolos de un alfabeto en otro, es decir, implementa un proceso de codificación. Por contraparte, un *decodificador* implementa un proceso inverso, de decodificación.
+Un uso común de los codificadores son los teclados que aparecen en alarmas, relojes y lavarropas.
+Los decodificadores se usan en la selección de dispositivos mediante puertos o el direccionamiento de memoria en una computadora.\\
+
+*a.* Codificador de decimal a BCD.
+|-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+---+-----+-----+-----+-----+---+-----|
+| I_9 | I_8 | I_7 | I_6 | I_5 | I_4 | I_3 | I_2 | I_1 | I_0 |   | B_3 | B_2 | B_1 | B_0 |   | Dec |
+|-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+---+-----+-----+-----+-----+---+-----|
+|   1 |   0 |   0 |   0 |   0 |   0 |   0 |   0 |   0 |   0 | < |   0 |   0 |   0 |   0 | > |   0 |
+|   0 |   1 |   0 |   0 |   0 |   0 |   0 |   0 |   0 |   0 |   |   0 |   0 |   0 |   1 |   |   1 |
+|   0 |   0 |   1 |   0 |   0 |   0 |   0 |   0 |   0 |   0 |   |   0 |   0 |   1 |   0 |   |   2 |
+|   0 |   0 |   0 |   1 |   0 |   0 |   0 |   0 |   0 |   0 |   |   0 |   0 |   1 |   1 |   |   3 |
+|   0 |   0 |   0 |   0 |   1 |   0 |   0 |   0 |   0 |   0 |   |   0 |   1 |   0 |   0 |   |   4 |
+|   0 |   0 |   0 |   0 |   0 |   1 |   0 |   0 |   0 |   0 |   |   0 |   1 |   0 |   1 |   |   5 |
+|   0 |   0 |   0 |   0 |   0 |   0 |   1 |   0 |   0 |   0 |   |   0 |   1 |   1 |   0 |   |   6 |
+|   0 |   0 |   0 |   0 |   0 |   0 |   0 |   1 |   0 |   0 |   |   0 |   1 |   1 |   1 |   |   7 |
+|   0 |   0 |   0 |   0 |   0 |   0 |   0 |   0 |   1 |   0 |   |   1 |   0 |   0 |   0 |   |   8 |
+|   0 |   0 |   0 |   0 |   0 |   0 |   0 |   0 |   0 |   1 |   |   1 |   0 |   0 |   1 |   |   9 |
+
+ N | N^2 | N^3 | N^4 | sqrt(n) | sqrt[4](N) |
+|---+-----+-----+-----+---------+------------|
+| / |  <  |     |  >  |       < |          > |
+| 1 |  1  |  1  |  1  |       1 |          1 |
+| 2 |  4  |  8  | 16  |  1.4142 |     1.1892 |
+| 3 |  9  | 27  | 81  |  1.7321 |     1.3161 |
+|---+-----+-----+-----+---------+------------|
+#+TBLFM: $2=$1^2::$3=$1^3::$4=$1^4::$5=sqrt($1)::$6=sqrt(sqrt(($1)))
+
+
+
+Bit de habilitación - en un codificador para mostrar validez cuando no hay entradas pulsadas
+
+** Ejercicio 4
+
+
+#+begin_export latex
+\clearpage
+#+end_export
+* Circuitos aritméticos y lógicos
+
+** Ejercicio 1
+Diseñe los siguientes circuitos combinacionales:
+a. Sumador completo de un bit.
+b. Restador completo de un bit.
+c. Integre los circuitos anteriores con las operaciones lógicas para construir una Unidad
+Aritmético Lógica (ALU) de un bit. La ALU tendrá como entrada los dos operandos y
+como salida el resultado y la banderas de acarreo para suma (C) y resta (B), cero (Z) y
+paridad (P) y podrá realizar las operaciones listadas en la siguiente tabla de:
+
+|----------+-----------------|
+| *Código* | *Operación*     |
+|----------+-----------------|
+|      001 | Suma            |
+|      010 | Resta           |
+|      100 | Suma lógica     |
+|      101 | Producto lógico |
+|      110 | Complemento     |
+|      *** | No operación    |
+|----------+-----------------|
+
+Analice y compruebe su correcto funcionamiento mediante simulación de un testbench.\\
+
+*Resolución*\\
+*a)*
+#+NAME: name
+#+BEGIN_SRC vhdl
+  library ieee;
+  use ieee.std_logic_1164.all;
+
+  entity sumador_completo is
+    port(
+      A, B, C_in :        in std_logic;
+      S, C_out :          out std_logic
+      );
+  end;
+
+  architecture behavior of sumador_completo is
+  begin
+      S <= ( not A and not B and C_in) or
+	   ( not A and B and not C_in) or
+	   (A and not B and not C_in ) or
+	   (A and B and C_in);
+
+      C_out <= (not A and B and C_in) or
+	       (A and not B and C_in) or
+	       (A and B and not C_in) or
+	       (A and B and C_in);
+  end architecture;
+#+END_SRC
+
+*b)*
+
+*c)*
+
+
+
+
+
+*2.* Diseñe un sumador y restador de 4 bits utilizando solo sumadores. Analice su
+funcionamiento y compruebe su correcto funcionamiento mediante simulación de un
+testbench.
+
+
+*3.*
+
+
+
+*Resolución*
+
+
+#+begin_src vhdl
+  libary ieee;
+  use ieee.std_logic_1164.all;
+
+  entity comparador is
+    port(
+      A, B : in std_logic;
+      resultado : out std_logic
+      );
+    end entity;
+
+    architecture behavior of comparador is
+
+      begin
+	  resultado <= (not A and not B) or (A and B);
+    end architecture; 
+#+end_src
+
+
+#+begin_export latex
+\clearpage
+#+end_export
+
+
+** Ejercicio 4
+
+Corrimiento a la izquierda - multiplicación por 2
+Entrada = std_logic_vector(3 downto 0)
+Salida = E(2 downto 0 & '0'
+
+Corrimiento a la derecha - división por 2
+Entrada std_logic_vector(3 down to 0)
+Salida std_logic_vector = E('0' & 3 downto 1)

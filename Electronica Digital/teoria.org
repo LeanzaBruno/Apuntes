@@ -1,0 +1,502 @@
+#+TITLE: Teoría completa y resumida de Electrónica Digital
+#+LANGUAGE: es
+#+AUTHOR: Bruno Leanza
+#+DATE: 2022
+
+
+#+begin_export latex
+\clearpage \tableofcontents \clearpage
+#+end_export
+
+
+* Sistemas numéricos
+#+begin_export latex
+\clearpage
+#+end_export
+
+
+* Codificación
+#+begin_export latex
+\clearpage
+#+end_export
+
+
+* Álgebra de Boole
+** Definición
+El álgebra de Boole es una estructura matemática que sistematiza operaciones lógicas utilizando técnicas algebraicas para tratar expresiones de la lógica proposicional.
+Fue proppuesta por George Boole en 1854 y Claude Shannon fue el primero en aplicarla en el *diseño y análisis* de circuitos electrónicos digitales en 1948.
+El álgebra de Boole se utiliza para:
+
+- Analizar circuitos digitales porque es una forma de describir el funcionammiento;
+- Diseñar ya que teniendo la función lógica se la aplica para desarrollar una implementación de dicha función.
+		
+** Operaciones
+
+Dado un conjunto formado por al menos dos elementos $B = \{\phi, U\}$ en el cual se han definido las siguientes operaciones:
+	
+Una *operación unitaria* que llamaremos *complemento*
+	$\~: B \to B$
+	$   a \to ~a$.
+	   
+Una *operación binaria* que llamaremos *suma* 
+	$\bigoplus : B \times B \to B$
+	$(a,b) \to c = a \bigodot b$.
+
+Una *operación binaria * llamada *producto*
+	
+	$\bigodot: B \times B \to B$
+	$(a,b) \to c = a \bigodot b$.
+	
+El conjunto y las operaciones así definidas $(B, ~, \bigoplus, \bigodot)$ son un álgebra de Boole si cumplen con los siguientes axiomas:
+
+  * Las operaciones de suma y producto son *asociativas*.
+  * Las operaciones de suma y producto son *conmutativas*.
+  * Las operaciones de suma y producto son *distributivas*.
+  * Existencia del *elemento neutro* para las operaciones.
+  * Existencia del *elemento complementario* para las operaciones.
+  
+** Teoremas
+A partir de estos axiomas anteriores se pueden deducir los siguientes teoremas:
+ 1. Ley de *idempotencia* para la suma y producto.
+ $\forall a \belongs B: a \bigoplus a = a$
+		$               a \bigodot a = a$
+ 2. Ley de *absorción* para la suma y producto.
+ 3. Ley de *identidad* para la suma y producto.
+ 4. Ley de *involución*.
+ 5. Ley del *complemento*.
+ 6. Leyes de *De Morgan*.
+
+** Ejemplos
+
+Hay numerosos casos de estructuras algebraicas que corresponden al álgebra de Boole, aunque en apariencia son muy diferentes, su estructura es la misma
+
+*** Lógica proposicional
+Es un sistema formal cuyos elementos más simples representan proposiciones, y cuyas constantes lógicas representan operaciones sobre proposiciones, capaces de formar otras proposiciones de mayor complejidad. 
+
+*** Álgebra de conjuntos
+Es el estudio de las operaciones básicas que pueden realizarse con conjuntos. Un conjunto es una colección de objetos considerada como un objeto en sí, definido por los elementos que lo componen.
+
+*** Lógica binaria
+Es un sistema lógico cuyas variables adoptan sólo dos valores, valores contapuestos que son las posibles alternativas entre dos situaciones posibles y cuyas operaciones lógicas permiten construir funciones de mayor complejidad.
+
+Definimos $B = \{\phi = 0, U = 1\} = \{ 0, 1\}$ 
+
+  * La operación complemento se llama *negación*:
+  * La operación suma se llama *suma*:
+  * La operacioń producto se llama *producto*:
+  
+$\(\{0,1\}\)$ es un álgebra de Boole porque cumple los siguientes axiomas:
+
+  1. Las operaciones de suma y producto son *asociativas*.
+  
+  2. Las operaciones de suma y producto son *conmutativas*.
+  
+  3. Las operaciones de suma y producto son *distributivas*.
+  
+  4. Existencia del *elemento neutro* para las operaciones.
+  
+  5. Existencia del *elemento complementario* para las operaciones.
+  
+  6. Cumple con los teoremas antes vistos.
+   
+Una función lógica también puede expresarse como el producto AND de maxitérminos. Tomando la tabla de verdad, se obtiene el POS considerando sólo los términos donde la función equivale a 0. 
+#+begin_export latex
+\clearpage
+#+end_export
+
+
+* Funciones lógicas
+** Definición
+
+Una función lógica es una función matemática y lógica cuyos argumentos y la función misma asumen uno de los valores posibles del conjunto que define las variables.
+
+Una función lógica toma la forma
+
+$f : B^n \to B$
+	
+donde $B=\{0,1\}$ es el dominio booleano y n es un natural que determina el número de argumentos necesarios para que dicha función se pueda calcular. 
+
+La cantidad de funciones depende de la cantidad de argumentos. Hay $2^{2^n}$ posibles funciones.
+
+Estas funciones se utilizan en el estudio de la teoría de complejidad. Sus propiedades son fundamentales en el diseño de algoritmos de clave simétrica en *criptografía* y en *diseño de circuitos digitales*.
+
+
+** Representaciones
+Existen 4 formas básicas de representar una función lógica. El uso de una u otra dependerá de las necesidades concretas de cada caso. 
+
+*** Expresión algebraica
+Es una representación matemática utilizando las tres operaciones básicas *AND*,*OR* y *NOT*. Combinando estas tres operaciones es posible construir cualquier expresión lógica. 
+
+*** Tabla de verdad
+Es una tabla utilizada en lógica que establece los valores de las expresiones lógicas para cada una de las combinaciones de los valores de los argumentos de la función.
+Una tabla de verdad tiene **una columna por cada variable de entrada y una columna final mostrando todos los resultados** de la expresión lógica. 
+Si las funciones tienen definidas todas sus combinaciones se las denomina **funcioens lógicas completas**, sino, **funciones incompletas**.
+
+Aquellos términos que no están definidos se los designa con una X y cumplen un papel de comodín, es decir, puede representar un 1 o un 0.
+
+*** Gráfica
+Es la utilizada en el desarrollo de circuitos electrónicos. En esta forma, las funciones algebraicas se representan gráficamente con símbolos estandarizados para operación básica. El término *puerta* se usa para describir un circuito que realiza una **operación lógica básica**.
+
+*** Formas canónicas
+La estandarización de los términos de la funciones lógicas hace que su evaluación, análisis, simplificación e implementación sea sistemática y sencilla. 
+Un término canónico de una función lógica es todo producto o suma en el cual *aparecen todas sus variables*.
+Estos términos se conocen como:
+
+- *Minitérmino* - $m_i$ - es una expresión lógica de n variables consistente sólo en el operador producto AND y el operador negación NOT. Representa a aquellos términos de la tabla de verdad que tienen valor 1. A cada minitérmino se le asigna un índice basado en el valor binario(escribiendo las variables que lo componen en el mismo orden).
+
+- *Maxitérmino* - $M_i$ - es una expresión lógica de n variables consistente sólo en el operador suma OR y el operador negación NOT. Representa a aquellos términos de la tabla de verdad que tienen valor 0. Al igual que al minitérmino, se le asigna un índice basado en el complemento del número binario que representa. 
+
+Todas las expresiones booleanas, independiente de su forma, pueden convertirse en cualquiera de las dos formas canónicas. 
+
+**** Suma de Producto - SOP
+Toda función lógica puede expresarwse como una suma *OR de minitérminos*.
+Si la función está representada en su forma de tabla de verdad, entonces la forma canónica suma de productos se obtiene considerando sólo las filas de la tabla para las cuales la función equivale a 1.
+
+
+**** Produco de Sumas - POS
+#+begin_export latex
+\clearpage
+#+end_export
+
+
+* Dispositivos programables
+#+begin_export latex
+\clearpage
+#+end_export
+
+
+
+* Circuitos combinacionales
+** Definición
+Un circuito combinacional o lógica combinacional se le llama a todo sistema digital cuyas salidas son función exclusiva de sus entradas sin que intervengan en ningún caso estados anteriores, por lo que carece de memoria y retroalimentación.
+
+Un circuito combinacional está formado por ecuaciones simples a partir de las operaciones básicas del álgebra de Boole, ~AND, OR y NOT~, y pueden representarse a través de una tabla de verdad.
+
+Los circuitos combinacionales son las máquinas abstractas más sencillas de la teoría de autómatas. Son la base con la que se construyen las demás máquinas abstractas.
+
+
+** Tipos
+- *Lógicos*
+  + Generador/detector de paridad
+  + Conversor de código
+  + Codificadores
+  + Generadores de códigos detectores de error.
+    
+- *Gestión de datos*
+  + Multiplexores y demultiplexores
+  + Codificadores/decodificadores para transmisión de datos
+    
+- *Aritméticos*
+  - Comparador
+  - Sumador/Restador
+  - Operaciones matemáticas
+    
+- *Aritméticos y lógicos*
+  - Unidad aritmético lógica
+
+
+** Procedimiento de diseño
+1. *Ańalisis*
+   1. Se enuncia el problema.
+   2. Se especifican las variables de entrada y salida del sistema.
+      
+2. *Modelado*
+   1. Se definen las funciones lógicas que especifican el comportamiento del sistema.
+   2. Si se puede, se simplifican las funciones a fin de hallar un circuito más sencillo.
+   3. Se desarrolla el diagrama del circuito que representan las funciones lógicas.
+      
+3. *Simulación* - Se construye un modelo computacional del circuito combinacional para simular su comportamiento.
+
+4. *Implementación* - se construye el circuito electrónico.
+
+5. *Evaluación* - se evalua el circuito para diferentes condiciones.
+
+
+*** Mapas de Karnaugh
+En el mapa se muestran todos los valores posibles de las variables de entrada y salida resultante para cada valor, similar a una tabla de verdad. Pero en lugar de organizar en filas y columnas, el mapa de Karnaugh es una matriz de celdas que se organizan de forma que la simplificación de una determinada expresion consista en agrupar convenientemente las celdas.
+
+Es un método sietemático de simplificación de expresiones booleanas inventado en 1953 por [[https://en.wikipedia.org/wiki/Maurice_Karnaugh][Maurice Karnaugh]]. El mapa reduce la necesidad de hacer cálculos extensos para la simplificación de expresiones booleanas.
+
+Una vez construido el mapa, la tarea siguiente es la de seleccionar conjuntos de celdas adyacentes de manera de obtener el menor número posible. Estos subcubos se seleccionan formando grupos de rectángulos que encierren a los 1's(también pueden elegirse los 0's si éstos son minoría). Las áreas deben contener un número de celdas igual a las potencias de 2(1, 2, 4, ...) y se debe agrupar la mayor cantidad posible. En resumen:
+
+- Se deben utilizar todos los 1's o 0's del mapa.
+- El número de celdas de cada grupo debe ser potencia de 2(1,2,4,...).
+- Hacer los grupos los más grandes posibles dará lugar a una mayor simplificación.
+- Crear el menor número de grupos posible.
+- La función final tendrá tantos términos como grupos tenga el mapa.
+- Cada término se obtiene eliminando la o las variables que cambien de estado en el mismo grupo. 
+ 
+
+** Codificadores binarios
+Un codificador es un circuito combinacional que /combierte símbolos de un alfabeto en otro/. Un codificador típico es uno en el cual tiene 2^n entradas de un código binario de n-bit. Sólo una de las entradas puede tener valor 1, mientras que las restantes permanecen en 0. La salida identifica cual entrada está en 1.
+
+*** Ejemplos de uso
+**** *Codificador 2 en 1*
+El caso más sencillo es el 2^1=2 entradas y 1 salidas. Su tabla de verdad es
+
+| A | B | f |
+|---+---+---|
+| 0 | 0 | X |
+| 0 | 1 | 0 |
+| 1 | 0 | 1 |
+| 1 | 1 | X |
+
+Su función lógica es
+
+$$
+f = A\bar{B}
+$$
+
+**** *Codificador 4 en 2*
+
+#+CAPTION: Tabla de verdad del codificador
+| A | B | C | D | f  |
+|---+---+---+---+----|
+| 0 | 0 | 0 | 0 | X  |
+| 0 | 0 | 0 | 1 | 00 |
+| 0 | 0 | 1 | 0 | 01 |
+| 0 | 0 | 1 | 1 | X  |
+| 0 | 1 | 0 | 0 | 10 |
+| 0 | 1 | 0 | 1 | X  |
+| 0 | 1 | 1 | 0 | X  |
+| 0 | 1 | 1 | 1 | X  |
+| 1 | 0 | 0 | 0 | 11 |
+| 1 | 0 | 0 | 1 | X  |
+| 1 | 0 | 1 | 0 | X  |
+| 1 | 0 | 1 | 1 | X  |
+| 1 | 1 | 0 | 0 | X  |
+| 1 | 1 | 0 | 1 | X  |
+| 1 | 1 | 1 | 0 | X  |
+| 1 | 1 | 1 | 1 | X  |
+|---+---+---+---+----|
+
+
+#+CAPTION: Mapa para f_0
+|-----+----+----+----+----|
+| f_0 | CD |    |    |    |
+|-----+----+----+----+----|
+|  AB | 00 | 01 | 11 | 10 |
+|-----+----+----+----+----|
+|  00 | 1  |  0 | X  | 1  |
+|  01 | X  |  0 | X  | X  |
+|  11 | X  |  X | X  | X  |
+|  10 | X  |  X | X  | X  |
+|-----+----+----+----+----|
+
+
+#+CAPTION: Mapa para f_1
+|-----+----+----+----+----|
+| f_1 | CD |    |    |    |
+|-----+----+----+----+----|
+|  AB | 00 | 01 | 11 | 10 |
+|-----+----+----+----+----|
+|  00 |  X | 0  | X  | 0  |
+|  01 |  1 | X  | X  | X  |
+|  11 |  X | X  | X  | X  |
+|  10 |  1 | X  | X  | X  |
+|-----+----+----+----+----|
+
+
+De lo cual las funciones lógicas para las salidas quedan
+
+$$
+f_1 = C + D \quad \quad \quad f_0 = B+D
+$$
+
+**** *Teclado*
+Otro ejemplo típico de codificador es un teclado. Se utiliza en interfaces numéricas simples, como alarmas, relojes y lavarropas. Las teclas se implementan a través de pulsadores conectados a las entradas del codificador. Las resistencias de pull-up(resistencia conectada a masa) asseguran que todas las líneas esténa nivel lógico 0 cuando no hay tecla pulsada. Cuando se pulsa una tecla, la línea se conecta a alimentación y se aplica un nivel lógico 1 a la entrada correspondiente del codificador, generando su código binario.
+
+*** Codificadores binarios con prioridad
+En un codificador normal todas las entradas tienen la misma importancia. Sin embargo, hay aplicaciones en las que es necesario dar más importancia una entrada que a las otras. Si se activan /dos o más entradas simultáneamente, el códificador generará el código de la entrada de mayor prioridad/.
+
+Esto se logra modificando la tabla de verdad.
+
+
+** Decodificadores binarios
+Un decodificador es un circuito lógico combinacional que combierte símbolos de un alfabeto en otro y aplica la operación inversa al codificador.
+En su forma general un decodificor tiene /n/ líneas de entrada(que determina el tamaño del código) y una de las 2^n líneas de salida indica la presencia de una de las combinaciones posibles
+
+Muchas veces, se incluye una entrada que permite habilitar o deshabilitar el proceso de decodificación en el circuito. Cuando la entrada está activa, las salidas son 0 independientemente del código presente en las entradas.
+
+*** Ejemplos de uso
+**** *Decodificador 2 en 4*
+**** *Decodificador 4 en 16*
+**** *Selección de dispositivo*
+La selección de puertos en los microcontroladores y computadoras se realiza usando decodificadores. Estos dispositivos externos incluyen impresoras, modems, escáneres, etc.
+
+Cada puerto tiene un número, denominado dirección. Cuando la computadora quiere comunicarse con algún dispositivo en particular, envía la dirección al puerto al que está conectado el dispositivo. Esta dirección del puerto se decodifica, activándose la salida del decodificador apropiada que habilita el correspondiente puerto.
+
+Los datos se transfieren dentro de la computadora a través de un bus de datos, que es un conjunto de líneas paralelas. El bus de datos está conectado a los puertos, pero los datos sólo pasarán a través del puerto que se seleccione con el decodificador. 
+
+**** *Direccionamiento de memorias*
+Otro ejemplo de uso de los decodificadores es la selección de posicioines de almacenamiento de memoria en un sistema digital. Una *memoria* es una colección de elementos capaces de almacenar y retener el estado de un bit. Cada una de estas posiciones tiene un número denominado *dirección*, que lo identifica unívocamente. Cuando la computadora desea acceder a alguna de estas celdas en particular, envía la dirección de la celda al bus de direcciones. Esta dirección se decodifica, activándose la salida del decodificador apropiada que habilita la celda correspondiente.
+El decodificador se utiliza para seleccionar la celda, o palabra, determinada por el sistema digital, de forma que los datos puedan ser enviados al sistema o recibidos por la celda. 
+
+#+begin_export latex
+\clearpage
+#+end_export
+
+#+begin_export latex
+\clearpage
+#+end_export
+
+** Multiplexores
+
+** Demultiplexores
+
+#+begin_export latex
+\clearpage
+#+end_export
+
+#+begin_export latex
+\clearpage
+#+end_export
+
+* Operaciones aritméticas-lógicas y ALU's
+**  Suma
+Es la operación que se realiza con mayor frecuencia. Los sumadores son muy importantes para los sistema digitales en los que se procesan datos numéricos.
+Un sumador combina **tres operandos aritméticos** *A, B y $C_n$* que utilizan las reglas de la suma aritmética y genera dos salidas: un bit de suma S y un bit de acarreo C.
+Cabe aclarar que este sumador solo suma dos bits, por lo que para sumar un número de dos bits se necesitan dos sumadores. La salida de acarreo de cada sumador se conecta a la entrada de acarreo del sumador siguiente. La entrada de acarreo $C_{in}$ del bit menos significativo se pone a 0.
+De manera general, para sumar dos números binarios con $n$ dígitos se necesitan $n$ sumadores completos. 
+
+*** Clasificación de sumadores
+  - *Sumador de acarreo en serie* - Un sumador de acarreo serie es aquel en el la salida de acarreo de cada sumador completo se conecta a la entrada de acarreo de la siguiente etapa(como el que se vió recien). La suma y el acarreo de salida de cualquier etapa no se pueden generar hsata que tiene lugar el acarreo de entrada, lo que da lugar a un retardo temporal en el proceso de adición. El tiempo de retardo de propagación del acarreo para cada sumador completo es el tiempo transcurrido desde la aplicación del acarreo den trada hasta que se produce el acarreo de salida, suponiendo que las entradas se aplican al mismo tiempo. 
+  
+  - *Sumador de acarreo anticipado* - Este sumador predice el acarreo de salida de cada etapa, en función de los bits de entrada de cada etapa, utilizando un circuito combinacional externo al sumador.
+
+
+**  Resta
+Los restadores son muy importantes para los sistemas digitales en los que se procesan datos numéricos. 
+Un restador combina tres operandos aritmétcos *A, B y B_in* que utilizan las reglas de la resta y genera dos salidas: el bit de resta *D* y un bit de préstamo *B_out*.
+El comportamiento del restador básico se ve en la siguiente tabla.
+| A | B |   Bin  |   Bout  | D |
+|:-:|:-:|:------:|:-------:|:-:|
+| 0 | 0 | 0      | 0       | 0 |
+| 0 | 0 | 1      | 1       | 1 |
+| 0 | 1 | 0      | 1       | 1 |
+| 0 | 1 | 1      | 1       | 0 |
+| 1 | 0 | 0      | 0       | 1 |
+| 1 | 1 | 0      | 0       | 0 |
+| 1 | 1 | 1      | 1       | 1 |
+
+
+La resta también se puede implementar a través de la suma del minuendo y el negativo del sustraendo. Es decir que en lugar de desarrollar el circuito combinacional para la resta, primero calculamos el negativo del sustraendo(operando B del sumador) y luego se lo sumamos al minuendo(operando A del sumador). De esta manera se simplifica el diseño de los circuitos restadores. 
+
+El negativo de un número binario se calcula como su complemento a 2, es decir, el complemento a 1(negando individualmente los bits) y luego sumandole uno al número restante.
+
+En resumen, cualquier circuito sumador de $n$ bits se puede transformar en un circuito restador al calcular el complemento a dos del sustraendo y tratando a los acarreos como préstamos(borrow).
+Se puede implementar un restador completo utilizando un sumador completo donde el 2do operando es su complemento a 2 dado que
+
+$$
+A-B = A+(-B)
+$$
+
+
+**  Multiplicación
+La multiplifación entre números binarios se puede realizar utilizando el mismo método que utilizamos cuando realizamos una multiplicación con números decimales. Mediante la suma de multiplicandos trasladados. La formación de multiplicandos trasladados es trivial en la multiplicación binaria ya que solo hay dos posibles valores. 
+La **multiplicación de números con signo** puede realizarse utilizando una multiplicación sin signo de magnitudes y luego determminar el signo a partir de la regla de los signos. 
+Cuando multiplicamos un número de n bits por un número de m bits se obtiene como máximo, un producto de $n+m$. El algoritmo de desplazamiento y suma necesita $m$ productos y sumas parciales para obtener el producto. Al mismo tiempo, cada paso produce un bit de producto parcial adicional. 
+
+
+**  Comparaciones
+La comparación es una operación que se realiza con mucha frecuencia en sistemas digitales y computadoras en las que se procesan datos. 
+Un comparador combina dos operandos *A y B* y genera tres salidas que indican la relación entre los operandos: *A < B, A = B, A > B* y se los denomina *comparador de magnitud*. 
+Al igual que la suma y resta, los comparadores se pueden construir a partir de comparadores de bits individuales en cascada. 
+
+
+** Operaciones bit a bit(bitwise)
+Una operación bit a bit opera sobre datos binarios a nivel de sus bits individuales.
+
+Es una accion simple y directa que se utiliza para manipular los datos para cálculos
+y comparaciones. Las operaciones bit a bit se utilizan para setear, resetear, dejar pasar,
+eliminar o invertir bits individuales o en conjunto, usando la máscara adecuada.
+
+Estas operaciones se clasifican en:
+
+- Operaciones lógicas - ejecutan las operaciones lógicas AND, OR, XOR Y NOT.
+
+- Operaciones de desplazamiento - desplazan los bits de los operandos hacia la derecha
+  o hacia la izquierda una o más posiciones agregando ceros en las posiciones iniciales
+
+- Operaciones de rotación - rotan bits del operando hacia la derecha o izquierda
+  una o más posiciones, sin perder información. Se puede utilizar un bit adicional
+  en la rotación o no.
+
+*** Desplazamientos
+Los bits son desplazados hacia la izquierda o derecha, ingresando bits de la palabra.
+Las diferencias entre estos operadores está en cómo se determinan los *valores de los bits
+que entran en la palabra*.
+
+**** Desplazamiento lógico
+los bits de un registro son desplazados una o más posiciones. Los bits que salen del registro
+por un extremo se pierden y en el otro extremo del registra se rellena con un bit
+cero por cada bit desplazado. Hay dos desplazamientos lógicos: ~hacia la izquierda
+y hacia la derecha~.
+
+**** Desplazamiento aritmético
+Similares a los lógicos pero están pensados para trabajar con números enteros
+con signo en representación de ~complemento a dos*. Los desplazamientos aritméticos
+permiten la multiplicación y la división por dos por una potencia de dos:
+desplazar n bits hacia la derecha hacia la izquierda o a la derecha equivale
+a multiplicar o dividir por $2^n$, respectivamente.
+
+*** Rotaciones
+Una rotación es una operación de reordenamiento de las entradas de una n-upla, a partir de mover sus entradas iniciales y finales mientras se desplazan las otras entradas a la siguiente posición(en cualquiera de las direcciones).
+Una rotación es una clase especial de *permutaciones cíclicas*, que son un caso particular de permutaciones.
+En una operación de rotación, los bits de una palabra son rotados de una manera circular como si los extremos izquierdo y derecho del registro estuvieran conectados.
+En la rotación hacia la izquierda, el bit que sale por el extremo izquierdo entrará por el extremo derecho, y viceversa con la rotación hacia la derecha.
+Esta operación es útil si es necesario conservar todos los bits existentes.
+
+
+*** Barrel shifter
+Un barrel shifter es un circuito digital que puede desplazar o rotar una palabra utilizando sólo lógica combinacional.
+Son utilizados en las unidades aritméticos lógicas para desplazar o rotar n-bitws en un solo ciclo de reloj.
+Un uso muy común de los barrel shifter es para la implementación en hardware de operaciones aritmétias en punto flotando,
+donde se lo utiliza para ajustar(alinear) los exponentes de dos números para  sumarlos o restarlos. 
+
+
+** Unidad aritmético lógica
+Una unidad aritmético lógica o ALU es un circuito que se especializa en realizar operaciones aritméticas y lógicas. Una ALU puede realizar las siguientes operaciones:
+
+- Operaciones aritméticas de números enteros
+- Operaciones lógicas bit a bit
+- Operaciones de desplazamiento y rotación.
+
+Una ALU consta de
+
+- /2 buses de entrada y 1 de salida/
+  Dos buses de entradas(A y B) y uno de salida(R). Cada bus tiene un grupo de señales que transporta un número entero binario.
+  
+- /1 bus de operación/
+  La entrada del código de operación es un bus que transmite un código de selección de operación, que es un valor enumerado que especifica la operación a realizar.
+  
+- /Estado de la operación/
+  Es una señal que transmite la información acerca del estado final de la operación actual(F). Suelen tener señales como:
+  + ~Acarreo/Préstamo~
+  + ~Cero~ - indica que todos los bits del resultado son cero lógico
+  + ~Negativo~ - indica que el resultado de la operación aritmétia es negativo
+  + ~Desbordamiento~ - indica que el resultado de una operación ha excedido el rango numérico
+  + ~Paridad~ - indica la paridad
+
+
+#+begin_export latex
+\clearpage
+#+end_export
+
+
+*** Funcionamiento
+El código de operación ~Op~ determina la operación que se ejecutará y los operandos involucrados.
+El flujo de datos y la subunidad de la ALU utilizada para realizar la operación sobre ellos son controlados mediante multiplexores, demultiplexores y circuitos combinacionales controlados por el código de operación.
+
+
+*** Arquitectura
+La estructura básica de una unidad lógica aritmética suele consistir en utilizar multiplexores con tantas entradas como operaciones queremos que realice y en cada entrada colocar un circuito que ha de realizar la operación correspondiente.
+
+Sin embargo, la arquitectura depende los objetivos de diseño por lo que existen varias.
+
+
+**** Arquitecture secuencial
+
+**** Arquitectura paralela simultánea
+
+**** Architectura paralela de bajo consumo

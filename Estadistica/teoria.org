@@ -1,0 +1,475 @@
+#+TITLE: Teoría completa y resumida de Estadística
+#+begin_export latex
+\clearpage
+\tableofcontents
+\clearpage
+#+end_export
+
+#+begin_export latex
+\clearpage
+#+end_export
+* Probabilidad
+
+#+begin_export latex
+\clearpage
+#+end_export
+* Variables aleatorias
+
+* Variables aleatorias unidimensionales
+
+** Definición
+
+Una variable aleatoria es aquella función definida en el espacio muestral que asocia a cada punto muestral un número perteneciente a los reales. Al realizar el experimento aleatorio, la variable toma un solo valor. 
+
+** Clasificación
+Las variables aleatorias se clasifican en discretas y continuas. Las primeras solo pueden tomar números enteros y la segunda cualquier número real.
+
+** Distribución de Probabilidades
+Existe una asignación de probabilidades a cada uno de los posibles valroes que puede tomar una variable aleatoria. Esa correspondencia entre los valores de la variable aleatoria y su probabilidad de ocurrencia es lo que se denomina b **distribución de probabilidades**.
+  
+-------------------------------------------------------------------------------
+
+** Variable aleatoria discreta
+
+*** Función de masa de probabilidad o función de cuantía
+Esta función es la forma matemática de expresar la correspondencia entre *los valores de la variable y sus probabilidades*.
+
+$$f(x) = P(X=a)$$
+
+Esto se lee *"la probabilidad de que la variable aleatoria* $X$ *tome el valor a*".
+
+Para satisfacer los axiomas de la teoría de la probabilidad y ser realmente una función de probabilidad deberá cumplir con los siguientes requisitos:
+
+1. $f(x_i)$ debe tener un valor númerico para todos los posibles valores de la variable aleatoria.
+
+2. $0 \leq f(x_i) \leq 1, \forall x$.
+
+3. $\sum f(x_i) = 1, \forall x$.
+
+*** Función acumulativa o de distribución
+Esta función $$F(x)$$ (no confundir con $$f(x)$$) es simplemente *la probabilidad de que la variable aleatoria tome valores menores o iguales que un valor dado*. 
+
+$$F(z) = P(X \leq z)$$
+
+Para el caso de una variable discreta esta función resulta de la suma de los valores de la función de masa de probabilidad evaluada en aquellos valores menores o iguales que z: 
+
+$$F(x) = P(X \leq z) = \sum_{\forall x_i \leq z} f(x_i)$$
+
+La gráfica de esta función es de tipo *escalonada*.
+
+
+-------------------------------------------------------------------------------
+
+** Variable aleatoria continua
+
+*** Función de densidad o de masa de probabilidad
+No podemos utilizar el mismo concepto de función de cuantía para variables aleatorias continuas ya que su dominio es infinito. Por lo que el problema de especificar la distribución de probabilidades para una variable aleatoria continua se deriva de realizar el siguiente razonamiento.
+Si el eje x se divide en un gran número de intervalos infinitesimales, cada uno de longitud $$dx$$, es posible definir una función f(x) tal que la probabilidad de que $$x$$ esté en un intervalo $$(x, x+dx$$ es $$f(x)dx$$.
+Ya que ocurrencias en distintos intervalos son eventos mutuamente excluyentes, se deduce que la probabilidad de que una variable aleatoria tome valores en un tervalo de longitud finita, es la suma de probabilidades en los intervalos infinitesimales, es decir, $$\int f(x)dx$$ sobre el intervalo de interés. 
+**De esta manera, el área bajo la curva de esta función en un intervalo, representa la probabilidad de que la variable tome valores en el intervalo**: 
+
+$$P( x_i \leq x \leq x_2 ) = \int_{x_1}^{x_2} f(x)dx$$
+
+La probabilidad de que una variable aleatoria continua tome un valor específico es 0, dado que 
+
+$$P(X=z) = \int_{z}^{z} f(x)dx = 0$$
+
+Por ende, 
+
+$$P(a \leq X \leq B ) = P (a < X B ) = P(a \leq X < B) = P(a < X \leq B)$$
+
+	El valor de f(x) en sí mismo no es una probabilidad, sino solamente la medida de la densidad de probabilidad en un intervalo.
+
+Al igual que la función de cuantía para variables discretas, la función de densidad debe cumplir ciertas condiciones para poder ser una *función de probabilidad*.
+
+1. $$f(x) \geq 0$$.
+
+2. $$\smallint_{-\infty}^{\infty} f(x)dx = 1$$.
+
+*** Función de distribución o de acumulación
+Se defina la función de distribución acumulativa de la v.a. X, $$F(x)$$ (*no confundir con f(x), la función de distribución usa una F grande*), como la probabilidad de que X tome valores menos o iguales a un valor z:
+
+$$F(z) = P(X \leq z) = \int_{-\infty}^z f(x)x$$
+
+**** Propiedades de la función de distribución
+
+1. $$F(-\infty) = \lim_{z \to -\infty} \int_{-\infty}^z f(x)dx = 0$$
+
+2. $$F(\infty) = \lim_{z \to \infty} \int_{-\infty}^z f(x)dx = 1$$
+
+3. Es una función monótona creciente. 
+
+4. Se puede hallar la función de densidad derivando la función de distribución y viceversa, aplicando una integral indefinida a la función de densidad se halla la función de distribución.
+
+
+
+-------------------------------------------------------------------------------
+
+* Variables aleatorias bidimensionales
+
+** Variables aleatorias discretas
+
+*** Función de cuantía conjunta
+
+$$f(x,y) = P(X=x;Y=y)$$
+
+**** Función de cuantía marginales
+
+$$f(x) = P(X=x) = \sum_{\forall y_i}^n f(x,y_i), i \in \{0, 1, ..., n\}$$
+
+$$f(y) = P(Y=y) = \sum_{\forall x_i}^n f(x_i, y), i \in \{0, 1, ..., n\}$$
+
+*** Función acumulativa conjunta
+
+
+$$F(x,y) = P(X \leq x ; Y \leq y) = \sum_{x_i}^n \sum_{y_j}^m f(x_i, y_j), i \in \{0, 1, ..., n\},\ j \in \{0, 1, ..., m\}$$
+
+**** Funciones acumulativas marginales
+
+$$F(x) = P(X \leq z ) = \sum_{x_i \leq x} f(x_i) = \sum_{\forall x_i \leq x} \sum_{y_j = 0}^n f(x_i, y_j)$$
+
+$$F(y) = P(Y \leq y) = \sum_{y_j \leq y} f(y_j) = \sum_{x_i = 0}^m \sum_{y_j \leq y} f(x_i, y_j)$$
+
+
+*** Funciones condicionales
+$$
+f(x/y)=P(X = x / Y = y_0) = \frac{P(X=x \land Y = y)} {P(Y = y_0)} = \frac{f(x,y)}{\sum_i^n f(x_i, y)} = \frac{f(x,y)}{f(y)}
+$$
+
+Es inverso cuando al condición está dada por X.
+
+*** Independencia de variables aleatorias
+Si las variables son independientes entonces se cumple que:
+
+\begin{align*}
+P(X = x_0, Y = y_0 ) &= P(X = x_0) \cdot P(Y = y_0)\\
+f(x_0, y_0) &= f(x_0) \cdot f(y_0)
+\end{align*}
+
+** Variables aleatorias continuas
+
+*** Función de densidad conjunta
+
+$$P( x_i \leq X \leq x_2 ; y_i \leq Y \leq y_2) = \int_{x_1}^{x_2} \int_{y_1}^{y_2} f(x,y)dxdy$$
+
+Graficamente, esto representa el volumen debajo de la función f(x,y) sobre la región dada.
+
+*** Funciones de densidad marginales
+
+$$
+f(x) &= \int_{-\infty}^{\infty} f(x,y)dy
+f(y) &= \int_{-\infty}^{\infty} f(x,y)dx
+$$
+
+*** Función de distribución conjunta
+$$
+F(x,y) = P(-\infty \leq X \leq x_1 ; -\infty \leq Y \leq y_1)
+= \int_{-\infty}^{x_1} \int_{-\infty}^{y_1} f(x,y)dxdy
+$$
+
+Las propiedades son análogas al caso unidimensional
+
+*** Funciones de distribución marginales
+
+\begin{align*}
+F(x) = P(X \leq t) = \int_{-\infty}^{t} \int_{-\infty}^{\infty} f(x,y)dydx
+       = \int_{-\infty}^{t} f(x)dx
+\end{align*}
+
+*** Función de distribución \to Función de densidad
+
+*** Función de densidad \to Función de distribución
+*** Función de probabilidad condicional
+
+- Función de distribución condicionada de la v.a. X dado $Y=y_0$:
+
+  $$
+  F(x/y) = \int_{-\infty}^x f(x/y)dx = \frac{\int_{-\infty}^x f(x/y)dx} {f(y)}
+  $$
+  
+*** Independencia de variables aleatorias
+Si dos variables aleatorias distribuidas conjuntamente son independientes, entonces:
+
+\begin{align*}
+P(X \leq x_0 ; Y \leq y_0) &= P(X \leq x_0) \cdot P(Y \leq y_0)\\
+F(x_0,y_0) &= F(x_0) \cdot F(y_0)
+\end{align*}
+
+
+#+begin_export latex
+\clearpage
+#+end_export
+* Características
+** Medidas de tendencia central
+
+** Promedios
+*** Esperanza matemática
+Se define como
+
+\begin{align}
+E(X) &= \sum_{i}^{n} x_i f(x_i) &&\text{Caso discreto}\\
+E(X) &= \int_{-\infty}^{\infty} x f(x) dx &&\text{Caso continuo}
+\end{align}
+
+La esperanza matemática representa el ~centro de masa~ de la función
+de probabilidad.
+
+----------
+4
+** Medidas de ubicación
+*** Mediana
+Representa el valor de la variable aleatoria que divide a la mitad a
+todos los valores posibles que puede tomar y cumple la siguiente
+condición:
+
+\begin{align}
+P(X \leq Mediana) = 0,5 &= \sum_i f(x_i) && \text{Caso discreto}\\
+                  &= \int_{-\infty}^{Mediana} f(x) dx && \text{Caso continuo}
+\end{align}
+
+*** Modo
+El modo es el valor de la variable que ocurre con más frecuencia. En
+el caso discreto, observando su tabla de probabilidades puede verse
+rapidamente que el valor cuya probabilidad sea la mayor, será el
+modo.
+Para el caso continuo, debemos recurrir a las derivadas de la función
+de densidad dado que en realidad la función de densidad en sí misma no
+representa la probabilidad de ocurrencia la variable. Entonces, el
+valor que sea el modo de la variable aleatoria cumplirá con
+
+\begin{align}
+\frac{d}{dx}f(x) = 0\quad\quad y\quad\quad \frac{d^2}{dx^2} f(x) < 0
+\end{align}
+
+
+*** Cuantiles
+Se denomina cuantil de orden p al valor de la variable que cumple con
+la siguiente condición
+
+\begin{align}
+P(X\leq x_p) = p \quad = \quad P(X > x_p)=1-p
+\end{align}
+
+**** ~Cuartiles~:
+Existen 3 cuartiles y dividen la distribución de probabilidades en
+cuatro partes.
+
+\begin{align}
+P(X\leq x_p) = \frac{i}{4},\ i=1,2,3.
+\end{align}
+
+El cuartil es orden 2 corresponde a la mediana.
+
+**** ~Deciles~:
+Dividen la distribución de probabilidades en diez partes, por lo tanto
+hay 9 deciles.
+
+\begin{align}
+P(X\leq x_p) = \frac{i}{10},\ i=1,2,...,9.
+\end{align}
+
+**** ~Percentiles~:
+Dividen la distribución de probabilidades en 100 partes, por tanto hay
+99 percentiles. Son de interés cuando se desea analizar detalladamente
+la distribución de probabilidades
+
+\begin{align}
+P(X\leq x_p) = \frac{i}{99},\ i=1,2,...,99.
+\end{align}
+
+#+begin_export latex
+\clearpage
+#+end_export
+
+** Momento
+Se los define como los promedios de distintas potencias de la variable
+aleatoria
+
+*** Momentos centrados respecto al valor medio \epsilon_k
+Elijo la letra \epsilon en vez de \mu para este momento centrado respecto a la media porque su forma me recuerda que está centrado respecto a la esperanza.
+
+\begin{align}
+\epsilon_k = E[(X-E[X])^k] &= \sum_i (x_i-E[X])^k \cdot f(x_i) && \text{Caso discreto}\\
+                  &= \int_{-\infty}^{\infty} (x_i-E[X])x^k \cdot f(x)dx && \text{Caso continuo}
+\end{align}
+
+*** Momentos ~NO~ centrados o centrados al origen \theta_k
+Estos momentos se obtienen con respecto al origen.
+Similar a lo anterior, este símbolo me recuerda que el momento está centrado respecto al origen, o dicho de otra forma, es un momento ~no centrado~.
+
+\begin{align}
+\theta_k = E[X^k] &= \sum_i (x_i-0)^k \cdot f(x_i) \nonumber \\
+                  &= \sum_i x_i^k \cdot f(x_i) && \text{Caso discreto}\\
+                  &= \int_{-\infty}^{\infty} (x-0)^k \cdot f(x)dx \nonumber \\
+                  &= \int_{-\infty}^{\infty} x^k \cdot f(x)dx && \text{Caso continuo}
+\end{align}
+
+
+#+begin_export latex
+\clearpage
+#+end_export
+** Medidas de variabilidad
+** Rango
+Es simplemente la diferencia entre el mayor y el menor valor de la
+variable.
+
+** Varianza
+Es la medida de dispersión más usada y es el momento de orden 2. Nuevamente hago un cambio de simbología
+
+\begin{align}
+\epsilon_2 = Var(X) =
+\left\{
+       \begin{array}{ll}
+                    \sum_i [x_i-E(x)]^2 f(x_i)                & \text{Caso discreto}\\\\
+                    \int_{-\infty}^{\infty} [x-E(x)]^2 f(x)dx & \text{Caso continuo}
+       \end{array}
+\right.
+\end{align}
+
+
+La primera expresión puede simplificarse y ser expresada en función de
+los momentos con respecto al origen(no centrados) al desarrollar la
+potencia del binomio, resultando:
+
+\begin{align}
+\epsilon_2 = Var[X] = E[X^2]-(E[X])^2 = \theta_2 - \theta_1^2
+\end{align}
+
+
+** Desvío estándar \sigma
+Para algunas aplicaciones suele ser más conveniente utilizar una
+medida de variabilidad en las mismas unidades de la variable, para eso
+existe el desvío estándar como la raíz cuadrada positiva de la
+varianza:
+
+\begin{align}
+\sigma = + \sqrt{Var[X]} = + \sqrt{\theta_2 - \theta_1^2}
+\end{align}
+
+*** Coeficiente de variabilidad
+Es un coeficiente adimensional que se obtiene de dividir el desvío por
+el valor esperado. Se lo utilza para comparar las dispersiones de
+poblaciones que corresponden a variables _con diferentes unidades_ o
+bien en aquellos casos en que tienen mismas unidades pero sus valores
+medios son muy diferentes.
+
+\begin{align}
+C_v = \frac{\sigma[X]}{E[X]}
+\end{align}
+
+#+begin_export latex
+\clearpage
+#+end_export
+
+** Medidas de asimetría
+De igual forma que la media y la varianza miden la ubicación y
+dispersión, los momentos más altos miden otras propiedades.
+
+** Momento ~centrado~ de orden 3 \epsilon_3
+El tercer momento respecto a la media es usado para determinar si una
+distribución es simétrica o asimétrica. Si
+
+\begin{align*}
+\epsilon_3 &= 3 \Rightarrow \text{simétrica}\\
+\epsilon_3 &< 3 \Rightarrow \text{asimétrica a la derecha}\\
+\epsilon_3 &> 3 \Rightarrow \text{asimétrica a la izquierda}
+\end{align*}
+
+** Coeficiente de asimetría
+El momento \epsilon_3 en si mismo no es una buena medida de asimetría ya
+que tiene las mismas unidades que la variable, por eso se define una
+medida relativa denominada ~coeficiente de asimetría~:
+
+\begin{align}
+\gamma = \frac{\epsilon_3}{\sigma^3} = \frac{\theta_3 -3\theta_2 \theta + 2\theta^3}{(\theta_2-\theta^2)^{3/2}}
+\end{align}
+
+
+#+begin_export latex
+\clearpage
+#+end_export
+
+* Medidas de curtosis
+Una cuarta propiedad de las variables aleatorias se basa en el momento
+~centrado~ de cuarto orden \epsilon_4, que permite evaluar el empinamiento
+o aplastamiento de la distribución de probabilidades comparada con una
+curva tomada como modelo(la curva normal).
+
+\begin{align}
+\gamma_2 = \frac{\epsilon_4}{\sigma^4} = \frac{\theta_4-4\theta_3 \theta+6\theta_2 \theta^2-3\theta^4}{\sigma^4}
+\end{align}
+
+La curtosis de la curva normal es igual a 3, y se la denomina
+distribución *mesocúrtica*. Para distribuciones que presenten mayor
+concentración de probabilidad cerca de la media, mayor que en la
+Normal, la curtosis será ~mayor que 3~ y se denominará
+*leptocúrtica*. En caso que la concentración alrededor de la media sea
+menor que en la Normal, la curtosis será ~menor que 3~ y se llamará
+*platicúrtica*.
+
+#+CAPTION: Demostración de la curtosis
+#+NAME: figura
+[[./curtosis.png]]
+
+#+begin_export latex
+\clearpage
+#+end_export
+
+* Momentos bidimensionales
+
+** Momentos ~NO~ centrados
+
+\begin{align}
+\theta_{l,n} =
+\left\{
+       \begin{array}{ll}
+          \sum_i \sum_j x_i^l y_j^n f(x,y) & \mbox{Caso discreto}\\\\
+          \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} x^l y^n f(x,y) dxdy & \mbox{Caso continuo}
+       \end{array}
+\right.
+\end{align}
+
+*** Esperanzas marginales
+
+
+\begin{align}
+E(X)=\theta_{1,0}=
+\left\{
+       \begin{array}{ll}
+         \sum_i \sum_j x_i^l  y_j^0  f(x,y) & \mbox{Caso discreto}\\\\
+         \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} x^l  y^0  f(x,y) dydx & \mbox{Caso continuo}
+       \end{array}
+\right.
+\end{align}
+
+
+\begin{align}
+E(Y)=\theta_{0,1}=
+\left\{
+       \begin{array}{ll}
+         \sum_i \sum_j x_i^0  y_j^n  f(x,y) & \mbox{Caso discreto}\\\\
+         \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} x^0  y^n  f(x,y) dxdy & \mbox{Caso continuo}
+       \end{array}
+\right.
+\end{align}
+
+
+
+#+begin_export latex
+\clearpage
+#+end_export
+
+** Momentos centrados respecto a valores medios
+
+\begin{align}
+\epsilon_{e,s} = E[X-E(X)]^e \cdot E[Y - E(Y)]^s
+\end{align}
+
+
+
+#+begin_export latex
+\clearpage
+#+end_export
+* Modelos estadísticos
+
+
