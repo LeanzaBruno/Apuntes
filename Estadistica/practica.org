@@ -3,17 +3,316 @@
 #+DATE: 2022
 
 
+
+
+* TODO Terminar Ejercicio 1.6z
+
+##* Cómo pensar un ejercicio?
+##** Interpretar el enunciado
+##*** Pasar en limpio los datos
+##*** Identificiar eventos y el espacio muestral
+##*** Definir y clasificar las variables aleatorias
+##*** Caracterizar las variables aleatorias
+##*** Interrogantes
+##** Planteo
+##** Resolución
+##** Respueta
+
 #+begin_export latex
 \clearpage
 #+end_export
+
+
 * Probabilidad
 
+*1.* La probabilidad de resolver correctamente un problema con alguna de dos versiones de Octave es 0.45. La de resolver el problema con la primera de estas dos versiones es 0.40 y la de resolverlo con la segunda es 0.30. ¿Es independiente la resolución del problema con estas dos versiones? Justifique.
+
+
+_Resolución_:
+Dado X: la probabilidad de resolver el problema con la 1ra versión y Y: la probabilidad de resolverlo con la 2da versión, las probabilidades del enunciado son:
+\begin{align*}
+P(X) &= 0,40\\
+P(Y) &= 0,30\\
+P(X \cup Y ) &= 0,45.
+\end{align*}
+
+Para obtener la probabilidad conjunta usamos la fórmula de la probabilidad total.
+\begin{align*}
+P(X \cup Y ) &= P(X) + P(Y) - P(X \cap Y)\\
+P(X \cap Y ) &= P(X) + P(Y) - P(X \cup\\
+             &= 0,40 + 0,30 - 0,45\\
+	     &= 0,25 \rightarrow 25\%
+\end{align*}
+
+Para saber si los eventos X y Y son independientes, su producto debería ser igual a su probabilidad conjunta:
+$$
+P(X) \cdot P(Y) = 0,40 \cdot 0,30 = 0,12 \neq 0,25 = P(X \cap Y)
+$$
+y por tanto *no son eventos independientes*.
+
+
+------------------------------
+
+*2.* Un correo en un Webmail Horde es revisado por dos algoritmos de antispam. Una política de seguridad decide que se muestren aquellos que cuenten con el visto bueno de por lo menos uno de los chequeos. Con este criterio pasan el 80 %. Se sabe que el el 60 % pasó el primer algoritmo y el segundo el 50 %. ¿Cuál hubiese sido el porcentaje de correos mostrados, si se hubiese exigido superar ambas revisiones?
+
+_Resolución_:
+Sea A el número de mails que pasan el primer algoritmo  y B los que pasan el segundo. La probabilidad de que un mail pase ambos chequeos simultaneamente $P(A \cap B)$ es
+\begin{align*}
+P(A) = 0,60 \quad \quad P(B) &= 0,50 \quad \quad P(A \cup B) = 0,80\\\\
+P(A \cup B ) &= P(A) + P(B) - P(A \cap B)\\
+P(A \cap B ) &= P(A) + P(B) - P(A \cup B)\\
+             &= 0,60 + 0,50 - 0,80\\
+	     &n= \mathbf{0,30} \rightarrow \mathbf{30\%}
+\end{align*}
+
+
+------------------------------
+
+*3.* En una facultad hay 425 ingresantes de Ingeniería en Informática. En el primer cuatrimestre hay tres asignaturas por cursar: Matemática (A), Química (B) y Física (C). Del SIU Guaraní se obtuvo la siguiente información de cursado:
+
+|-------------------+---------------|
+| Asignatura        | N° de alumnos |
+|-------------------+---------------|
+| A                 |           120 |
+| B                 |            70 |
+| C                 |            60 |
+| $A \cap B$        |            45 |
+| $A \cap C$        |            45 |
+| $B \cap C$        |            20 |
+| $A \cap B \cap C$ |             5 |
+|-------------------+---------------|
+
+Suponga que un alumno es elegido al azar. Calcular las probabilidades de que concurra a:
+a) Las 3 asignaturas.\\
+b) Por lo menos una de las 3.\\
+c) Sólo a Física.\\
+d) Sólo a una asignatura.\\
+e) Matemática pero no a Química.\\
+f) Física o Matemática pero no a Química.\\
+
+
+_Resolución_:
+
+|-------------------+---------------+--------------|
+| Asignatura        | N° de alumnos | Probabilidad |
+|-------------------+---------------+--------------|
+| A                 |           120 | 0,29         |
+| B                 |            70 | 0,16         |
+| C                 |            60 | 0,14         |
+| $A \cap B$        |            45 | 0,11         |
+| $A \cap C$        |            10 | 0,02         |
+| $B \cap C$        |            20 | 0,05         |
+| $A \cap B \cap C$ |             5 | 0,01         |
+|-------------------+---------------+--------------|
+
+a) La probabilidad de que concurran a las 3 materias simultáneamente es $P(A \cap B \cap C) = 0,01 \rightarrow 1%$.
+
+b) La probabilidad de que asista a al menos una de las 3 es
+
+\begin{align*}
+P(A \cup B \cup C) &= P(A) + P(B) + P(C) - P(A \cap B) - P(A \cap C) - P(B \cap C) - 2P(A \cap B \cap C)\\
+&= 0,29 + 0,16 + 0,14 - 0,11 - 0,02 - 0,05 - 2 \cdot 0,01\\
+&= 0,39\\
+\end{align*}
+
+c)
+\begin{align*}
+P(C_0) &= P(C) - P(C \cap A) - P(C \cap B)\\
+ &= 0,14 - 0,02 - 0,05 = 0,07 \rightarrow 7\%
+\end{align*}
+
+------------------------------
+
+*4)*
+Dos vendedores de una empresa con distinta antigüedad suelen llegar tarde a su trabajo; la probabili-
+dad de que el vendedor con mayor antigüedad llegue tarde cierto día es 0.20; de que el vendedor de
+menor antigüedad llegue tarde es 0.15 y de que ambos lleguen tarde es 0.09. Determine la probabili-
+dad de que:\\
+a) alguno llegue tarde cierto día.\\
+b) sólo uno llegue tarde.\\
+c) llegue tarde el de menor antigüedad sabiendo que lo hizo el de mayor antigüedad\\
+
+_Resolución_:
+Sea A el evento de que el vendedor con mayor antigüedad llegue tarde cierto día y B lo mismo para el vendedor de menor antigüedad, se tiene
+
+$$
+P(A) = 0,20 \quad \quad P(B) = 0,15 \quad \quad P(A \cap B) = 0,09
+$$
+
+a)
+\begin{align*}
+P(A \cup B) &= P(A) + P(B) - P(A \cap B)\\
+&= 0,20 + 0,15 - 0,09\\
+&= 0,26 \rightarrow 26\%
+\end{align*}
+
+
+b) La probabilidad de que sólo A ocurra lo llamamos A_0 y análogamente con B_0.
+
+\begin{align*}
+P(A_0) &= P(A) - P(A \cap B)\\
+&= 0,20 - 0,09 = 0,11\\\\
+P(B_0) &= P(B) - P(A \cap B)\\
+&= 0,15 - 0,09 = 0,06
+\end{align*}
+
+Por lo tanto la probabilidad de que sólo uno llegue tarde es
+
+$$
+P(A_0 \cup B_0) = 0,11 + 0,06 = 0,17 \rightarrow 17\%
+$$
+
+\begin{align*}
+P(B / A) &= \frac{P(A \cap B)}{P(A)}\\
+&= \frac{0,09}{0,20} = 0,45 \rightarrow 45\%
+\end{align*}
+
+------------------------------
+
+*5.* Una encuesta a ejecutivos se enfocó a su lealtad a la empresa. Una de las preguntas planteadas fue: Si otra compañía le hiciera una oferta igual o ligeramente mejor que la de su puesto actual, ¿permanecería con la empresa o tomaría el otro empleo? Las respuestas de los 200 ejecutivos de la encuesta se clasificaron en forma cruzada con su tiempo de servicio en la compañía y se muestran en la siguiente tabla.
+
+
+|         | Tiempo de Servicio(años) | <1 | 1 a 5 | 6 a 10 | >10 |
+|---------+--------------------------+----+-------+--------+-----|
+| Lealtad | Permanecería             | 10 |    30 |      5 |  75 |
+|         | No permanecería          | 25 |    15 |     10 |  30 |
+
+Si se selecciona al azar un ejecutivo, calcule las siguientes probabilidades de los siguientes eventos:\\
+a) el ejecutivo seleccionado es leal a la empresa.\\
+b) el ejecutivo seleccionado tiene entre 1 y 5 años de servicio.\\
+c) el ejecutivo seleccionado no es leal a la empresa y tiene entre 6 y 10 años de servicio.\\
+d) Calcule la probabilidad de que el ejecutivo seleccionado tenga más de 10 años de servicio sabiendo que es leal a la empresa.\\
+
+
+_Resolución_:
+
+a) Sea A el evento de que el ejecutivo sea leal
+$$
+P(A) = \frac{10+30+5+75}{200} = 0,6 \rightarrow 60\%
+$$
+
+b) Sea B el evento de que el ejecutivo tenga entre 1 y 5 años de servicio
+$$
+P(B) = \frac{30+15}{200} = 0,23 \rightarrow 23\%
+$$
+
+c) Sea C el evento de que el ejecutivo no es leal a la empresa y D que tiene entre 6 a 10 años
+$$P(C \cap D) = \frac{10}{200} = 0,05 \rightarrow 5\%$$
+
+d) Sea E el evento de que el ejecutivo tenga más de 10 años en la empresa
+
+$$P(E / A) = \frac{P(E \cap A)}{P(A)} = \frac{75/200}{0,6} = 0,62 \rightarrow 63\%$$
+
+------------------------------
+
+*6.* De los aspirantes a ingresar la tecnicatura en Software Libre el 40 % son varones, de los cuales sólo el 20 % ya es alumno de la UNL, mientras que entre las mujeres, el 30 % ya son alumnas. Se elige un aspirante al azar.
+a) ¿Cuál es la probabilidad de que ya sea alumno?\\
+b) Si el estudiante elegido ya es alumno, ¿cuál es la probabilidad de que sea varón?\\
+c) ¿Cuál es la probabilidad de que sea mujer o que no sea alumno?\\
+
+_Resolución_:
+
+a) La probabilidad de que ya sea alumno puede obtenerse realizando un árbol de probabilidades resultando la probabilidad:
+\begin{align*}
+P(A) = P(A \cap V ) + P(A \cap M) &= P(V) \cdot P(A / V) + P(M) \cdot P(A / M)\\
+&= 0,40 \cdot 0,20 + 0,60 \cdot 0,30 = 0,26 \rightarrow 26\%
+\end{align*}
+
+b)
+\begin{align*} 
+P( V / A ) &= \frac{P(V \cap A)}{P(A)}\\
+&= \frac{P(V) \cdot P(A/V)} {P(A)} \\
+&= \frac{0,40 \cdot 0,20} {0,26} \\
+&= 0,31 \rightarrow 31\%
+\end{align*}
+
+
+c)
+
+\begin{align*}
+P(M \cup \bar{A}) &= P(M) + P(\bar{A}) \\
+&= P(M) + P(V \cap \bar{A} ) + P(M \cap \bar{A} ) \\
+&= 0,60 + 0,32 + 0,42 \\
+&= 0,86 \rightarrow 86\%
+\end{align*}
+
+
+------------------------------
+
+*7.* Los habitantes en situación de empleo de una determinada ciudad se ha dividido en función de sus ingresos anuales en tres grupos: el 20% tiene ingresos bajos, el 70% ingresos medios y el resto ingresos altos. Se ha determinado que la proporción de la población con estos ingresos que posee título universitario es 0.1, 0.9 y 0.3 respectivamente.\\
+a) Determine, al elegir al azar un habitante, la probabilidad de que posea título universitario.\\
+b) Si la persona seleccionada tiene título universitario, ¿a qué grupo pertenecería más probablemente?\\
+
+_Resolución_:
+
+Sean B ingresos bajos, M ingresos medios, A ingresos altos, T estudios universitarios. 
+
+a)
+\begin{align*}
+P(T) &= P(T \cap B) + P(T \cap M) + P(T \cap A)\\
+&= P(B) \cdot P(T / B) + P(M) \cdot P(T / M) + P(A) \cdot P(T / A)\\
+&= 0,20 \cdot 0,1 + 0,70 \cdot 0,90 + 0,10 \cdot 0,30\\
+&= 0,68 \rightarrow 68\%
+\end{align*}
+
+b)
+\begin{align*}
+P(B/T) &= \frac{P(B \cap T)}{P(T)} = \frac{0,03}{0,68} = 0,04 \rightarrow 4\% \\
+P(M/T) &= \frac{P(M \cap T)}{P(T)} = \frac{0,63}{0,68} = 0,93 \rightarrow 93\% \\
+P(A/T) &= \frac{P(A \cap T)}{P(T)} = \frac{0,02}{0,68} = 0,03 \rightarrow 3\%
+\end{align*}
+
+Por lo tanto, es más probable que pertenezca al grupo de ingresos medios.
+
+------------------------------
+
+*8.* En una fábrica de discos de estado sólido, el 20 % de los mismos se montan en la primera planta, el 30 % en la segunda y el 50 % restante en la tercera. Se sabe además que la cadena de montaje falla, dando lugar a una disco defectuoso, con probabilidades 0.1, 0.2 y 0.15 en cada una de las tres plantas respectivamente. Se selecciona al azar un disco montado en esa fábrica.\\
+a) Determine la probabilidad de que sea defectuoso.\\
+b) ¿Cuál es la probabilidad de que se haya montado en la primera planta sabiendo que es defectuoso?\\
+c) Si el disco seleccionada resultó no defectuoso, ¿cuál es la probabilidad de que haya sido montado en la tercera planta.\\
+
+
+_Resolución_:
+Sea A el evento de que los discos se monten en la primera planta, B en la segunda y C en la tercera; y F el suceso de que el disco esté defectuoso. El enunciado nos da las siguientes probabilidades
+
+\begin{align*}
+&P(A) = 0,20      && P(B) = 0,30      &&& P(C) = 0,50\\
+&P(F / A) = 0,10  && P(F / B) = 0,20  &&& P(F / C) = 0,15
+\end{align*}
+
+a)
+\begin{align*}
+P(F) &= P(F \cap A) + P(F \cap B) + P(F \cap C)\\
+     &= P(A) \cdot P(F/A) + P(B) \cdot P(F/B) + P(C) \cdot P(F/C)\\
+     &= 0,20 \cdot 0,10 + 0,30 \cdot 0,20 + 0,50 \cdot 0,15\\
+     &= 0,16 \rightarrow 16\%
+\end{align*}
+
+b)
+\begin{align*}
+P(A/F) &= \frac{ P(A \cap F)} {P(F)} = \frac{0,02}{0,16}\\
+       &= 0,13 \rightarrow 13\% 
+\end{align*}
+
+c)
+$$
+P(\bar{F})=1-P(F) = 1 - 0,16 = 0,84 \rightarrow 84\%
+$$
+
+\begin{align*}
+P(C / \bar{F}) &= \frac{ P(C \cap \bar{F})} {P(\bar{F})}\\
+               &= \frac{ P(C) \cdot P(\bar{F}/C)} {P(\bar{F})}\\
+               &= \frac{0,50 \cdot 0,85} {0,84}\\
+               &= 0,51 \rightarrow 51\%
+\end{align*}
+
 
 #+begin_export latex
 \clearpage
 #+end_export
-* Variables aleatorias
 
+
+* Variables aleatorias
 ** Ejercicio 1
 *Problema*
 La distribución de probabilidad de X: "número de errores en un canal de transmisión" se presenta en la siguiente tabla:
@@ -108,6 +407,68 @@ P(X>2) = \int_2^{+ \infty} f(x)dx &= \int_2^{+ \infty} e^{-x} dx\\
 #+begin_export latex
 \clearpage
 #+end_export
-* Características
 
-* Ejercicio 1
+
+** Ejercicio 5
+_Enunciado_:
+En una comunicación entre un servidor web y un cliente necesita acceder a un sistema se estudia el tiempo de llegada de la solicitud y el tiempo transcurrido hasta el ingreso al sistema en el mecanismo de autenticación. 
+
+\noindent
+_Resolución_:
+
+*c)*
+X: tiempo de la llegada de la solicitud
+Y: tiempo de ingreso
+
+\begin{align*}
+P(X < \frac{Y}{2}) &= \int_{-\infty}^{+ \infty} \int_{-\infty}^{y/2}  f(x,y) dx dy\\
+                   &= \int_{-\infty}^{+ \infty} \int_{-\infty}^{y/2} 2/3 (x+2y) dx dy\\
+\end{align*}
+
+* Características
+** Ejercicio 1
+** Ejercicio 4
+_Enunciado_:
+La función de densidad de probabilidad del tiempo de fallo de un componente electrónico en una copiadora(Y) es la siguiente:
+
+\begin{align*}
+f(y)=
+\left\{
+      \begin{array}{lll}
+       \frac{1}{25}y & \mbox{si } 0 \leq y < 5\\
+       \frac{2}{5}-\frac{1}{25}y & \mbox{si } 5 \leq y < 10\\
+       0 & \mbox{en otro caso}
+     \end{array}
+\right.
+\end{align*}
+
+Calcular E(Y) y V(Y).
+
+Calcular E(1/Y). Qué conclusión obtiene respecto a la relación entre E(1/Y) y 1/E(Y)?\\
+
+\noindent
+_Resolución_:
+
+
+#+begin_export latex
+\clearpage
+#+end_export
+
+
+* Modelos probabilísticos
+** Ejercicio 1
+
+
+_Resolución_:
+a) Sea X el número de adultos que están a favor del control de precios y salarios. X sigue un modelo de ~binomial~ ya que los eventos, estar a favor o estar en contra, son independientes entre sí y a su vez la probabilidad se mantiene invariable luego de realizar la muestra. El primer evento tiene 60\% de probabilidad mientras que el segundo tiene 40\%.
+
+\begin{align*}
+f(x) = \frac{n!} {x!(n-x)!} =
+\end{align*}
+
+b)
+
+
+
+
+\end{align*}

@@ -5,9 +5,6 @@
 \clearpage
 #+end_export
 
-#+begin_export latex
-\clearpage
-#+end_export
 * Probabilidad
 
 #+begin_export latex
@@ -15,7 +12,7 @@
 #+end_export
 * Variables aleatorias
 
-* Variables aleatorias unidimensionales
+** Variables aleatorias unidimensionales
 
 ** Definición
 
@@ -105,7 +102,7 @@ $$F(z) = P(X \leq z) = \int_{-\infty}^z f(x)x$$
 
 -------------------------------------------------------------------------------
 
-* Variables aleatorias bidimensionales
+** Variables aleatorias bidimensionales
 
 ** Variables aleatorias discretas
 
@@ -389,7 +386,7 @@ medida relativa denominada ~coeficiente de asimetría~:
 \clearpage
 #+end_export
 
-* Medidas de curtosis
+** Medidas de curtosis
 Una cuarta propiedad de las variables aleatorias se basa en el momento
 ~centrado~ de cuarto orden \epsilon_4, que permite evaluar el empinamiento
 o aplastamiento de la distribución de probabilidades comparada con una
@@ -415,7 +412,7 @@ menor que en la Normal, la curtosis será ~menor que 3~ y se llamará
 \clearpage
 #+end_export
 
-* Momentos bidimensionales
+** Momentos bidimensionales
 
 ** Momentos ~NO~ centrados
 
@@ -470,6 +467,117 @@ E(Y)=\theta_{0,1}=
 #+begin_export latex
 \clearpage
 #+end_export
-* Modelos estadísticos
 
+* Modelos estadísticos
+La aplicación de la teoría de probabilidades en situaciones concretas, cuando se presentan determinadas características particulares, ha originado una serie de modelos. Estos modelos son funciones de probabilidad, por lo que cada uno deberá cumplir con todas las propiedades de una función de probabilidad. También poseen sus propias característica que serán determinadas en cada modelo.
+
+** Modelos de variables discretas
+
+*** Modelo de Bernoulli
+Tal vez la situación más común que se presenta es aquella en la que los resultados de los experimentos pueden separarse en dos categorías /mutuamente excluyentes/: éxito o fraccaso.
+
+Puede entonces decirse entonces que si la variable aleatoria X es x=0 \rightarrow fracaso, y si x=1 \rightarrow éxito.
+
+**** *Función de cuantía*
+
+\begin{align*}
+f(x)=
+\left\{
+\begin{array}{ll}
+   p & \mbox{si } x=1\\
+   1-p & \mbox{si } x=0
+\end{array}
+\right.
+\end{align*}
+
+donde /p/ es la probabilidad de éxito.
+
+**** *Esperanza*
+$$
+E(x)=p
+$$
+
+**** *Varianza*
+$$
+V(x) = p(1-p)
+$$
+
+
+
+------------------------------
+*** Modelo Binomial
+Si se realizan una serie de pruebas de tipo Bernoulli cuyos resultados sean /independientes/ y si la probabilidad de éxito permanece /invariable/ en todas ellas, se origina el modelo binomial. Los parámetros de este modelo son /n/, el número de pruebas, y /p/ la probabilidad de éxito.
+
+**** *Función de cuantía*
+
+\begin{align*}
+P(X=x) = f(x) &= n\binom{n}{x} p^x (1-p)^{n-x}\\
+              &= \frac{n!}{x!(n-x)!} p^x (1-p)^{n-x}
+\end{align*}
+
+El modelo se denomina binomial porque puede considerarse como el desarrollo del binomio $(p+q)^n$.
+
+**** Esperanza
+
+$$
+E(X)= \sum_{i=0}^n x_i f(x_i) = np
+$$
+
+**** Varianza
+$$
+Var(X)=n p q
+$$
+
+
+------------------------------
+*** Modelo de Poisson
+Generalmente este modelo se vincula a aquellos eventos que ocurren en una unidad de /tiempo/, luego el período de tiempo en el que se realiza el análisis constituye una secuencia de pruebas independientes cada una con distribución binomial.
+
+Si se tomara para el análisis un intervalo de tiempo igual al doble o al triple del inicial se verá que el parámetro es también igual al doboe, al triple, etc. Marcando esto la dependencia del tiempo de este modelo y por ello vinculado a los procesos *estocásticos*, esto es, procesos en los que interesa la secuencia del tiempo.
+
+Considerando las condiciones que caracterizan al modelo binomial, es necesario analizar que sucede con la distribución de la variable si el número de pruebas /n/ se incrementa y asociado a esto, la probabilidad /p/ disminuye. Es decir, mientras n aumenta y p disminuye, el número promedio de eventos en el intervalo total debe permanecer constante e igual a *n \cdot p*. Denominando a esta constante \lambda y considerando la función de masa de probabilidad de x cuando n\rightarrow\infty \land p \rightarrow 0 y llamando a \lambda =n \cdot p, a partir del modelo binomial, se obtiene:
+
+**** *Función de cuantía*
+$$
+P(X=x)=f(x)=\frac{e^{-\lambda} \lambda^x}{x!}
+$$
+
+donde \lambda es el parámetro del modelo.
+
+**** Esperanza
+$$
+E(X)=\lambda
+$$
+
+**** Varianza
+$$
+Var(X)= \lambda
+$$
+
+
+------------------------------
+*** Modelo hipergeométrico
+Este modelo surge cuando se realiza un muestreo sin reposición de una población finita con sus elementos clasificados en dos categorías.
+
+Si N es el total de elementos de los cuales hay k de una categoría y N-k de otra, al realizar una extracción de n elementos, sin reposición, cada extracción que se realice posteriormente es dependiente del resultado de la extracción anterior con lo cual va cambiando la probabilidad del éxito.
+
+Para derivar la función correspondiente a la variable aleatoria X: número de éxitos o elementos pertenecientes a la categoría que se estudia, en una extracción, se deberán considerar todas las maneras posibles o combinaciones de extraer x elementos de la categoría deseada, de los n extraídos y los restantes que pertenezcan a la otra categoría. El total de casos se obtiene de las combinaciones del total N extraídos de a n. Luego la función de masa de probabilidad es
+
+**** *Función de masa de probabilidad*
+$$
+P(X=x)=f(x)= \frac{ \binom{k}{n} \binom{N-k}{n-x} }{\binom{N}{n}}
+$$
+
+**** Esperanza
+$$
+E(X)=np = n \frac{k}{N}
+$$
+
+**** Varianza
+$$
+Var(X) = npq \frac{N-n}{N-1}
+$$
+
+siendo $\frac{N-n}{N-1}$ el factor de correción por muestreo sin reposición y población finita.
+Cuando $\frac{n}{N} \leq 0,05$ la distribución hipergeométrica \rightarrow binomial.
 
