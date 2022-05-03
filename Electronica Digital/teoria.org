@@ -10,6 +10,86 @@
 
 
 * Sistemas numéricos
+Un sistema de numeración es un conjunto de símbolos empleados para representar información numérica. El conjunto de símbolo constituye el /alfabeto/ y depende de la base del sistema de numeración. La base indica la cantidad de símbolos distintos que se usa en ese sistema.
+
+** Binario \rightarrow decimal
+El valor decimal de cualquier número binario puede hallarse sumando los pesos de todos los bits con valor 1 y descartando aquellos con valor 0. Por ejemplo:
+$$
+1101101_{2} = 2^6+2^5+2^3+2^2+2^0=64+32+8+4+1=109_{10}
+$$
+
+** Decimal \rightarrow binario
+*** Números enteros
+Se divice la cantidad decimal por 2, anotando los residuos, hasta obtener un cociente *cero*. El último residuo obtenido es el MSB y el primero es el bit menos significativo LSB.
+
+[[./img/entero_a_binario.png]]
+
+*** Números fraccionarios
+Se multiplica la fracción decimal por 2 y del resultado se extrae su parte entera MSB. Se multiplica sucesivamente por 2 la parte fraccional restante hasta que la misma sea o o alcance el número deseado de posiciones decimales. El último residuo o parte entera es el LSB.
+
+[[./img/fraccion_a_binario.png]]
+
+** Hexadecimal \rightarrow decimal
+El valor decimal de cualquier número puede hallarse multiplicando el valor decimal de cada dígito hexadecimal por su peso, y sumando luego estos productos.
+
+[[./img/hexa_a_decimal.png]]
+
+** Decimal \rightarrow hexadecimal
+
+*** Parte entera
+Al igual que el paso de decimal a binario, se divide sucesivamente por 16.
+
+*** Parte fraccionaria
+Se multiplica sucesivamente por 16
+
+** Hexadecimal \rightarrow binario
+Se reemplaza cada símbolo hexadecimal por el grupo de cuatro bits que representa dicho símbolo.
+
+[[./hexa_a_binario.png]]
+
+** Binario \rightarrow hexadecimal
+Reemplazar grupo de 4 bits por su equivalente en hexadecimal. Para la parte entera agrupar bits desde LSB hacia MSB. Para la parte fraccionaria agrupoar desde MSB hacia LSB.
+
+[[./img/binario_a_hexa.png]]
+
+** Conversión a base arbitraria
++ Decimal \rightarrow Base *b*
+  - Parte entera \rightarrow dividir número decimal por base *b*.
+  - Parte fraccionaria \rightarrow multiplicar número deciaml por base *b*.
++ Base *b* \rightarrow Decimal
+  + Evaluar polinomio caracteristico en base *b*.
+
+
+#+begin_export latex
+\clearpage
+#+end_export
+* Representación de binarios con signo
+Para representar los números binarios con signo existen 3 formas
+
+** Formato magnitud y signo
++ MSB bit(BS):
+  + 0 \rightarrow positivo
+  + 1 \rightarrow negativo
++ n-1 bits restantes \rightarrow magnitud
++ Con n bits pueden representarse [-2^{n-1}+1, 2^{n-1}-1} números.
++ Tiene doble representación del 0
++ Es complejo de operar aritméticamente.
+
+
+** Complemento a 1
++ Se cambian los 1's por 0's y 0's por 1's..
++ El MSB es el bit de signo.
++ Mismo rango de representación que el de signo y magnitud.
++ Doble representación del 0.
+
+
+** Complemento a 2
++ Se obtiene adicionando 1 al complemento a 1.
++ El MSB es el BS.
++ Rango = [-2^{n-1}, 2^{n-1}-1].
++ Única representación del 0.
+  
+
 #+begin_export latex
 \clearpage
 #+end_export

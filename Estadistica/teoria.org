@@ -511,7 +511,7 @@ Si se realizan una serie de pruebas de tipo Bernoulli cuyos resultados sean /ind
 **** *Función de cuantía*
 
 \begin{align*}
-P(X=x) = f(x) &= n\binom{n}{x} p^x (1-p)^{n-x}\\
+P(X=x) = f(x) &= \binom{n}{x} p^x (1-p)^{n-x}\\
               &= \frac{n!}{x!(n-x)!} p^x (1-p)^{n-x}
 \end{align*}
 
@@ -580,4 +580,50 @@ $$
 
 siendo $\frac{N-n}{N-1}$ el factor de correción por muestreo sin reposición y población finita.
 Cuando $\frac{n}{N} \leq 0,05$ la distribución hipergeométrica \rightarrow binomial.
+
+
+
+#+begin_export latex
+\clearpage
+#+end_export
+** Modelos para variables continuas
+*** Modelo exponencial
+Este modelo surge al considerar el *tiempo hasta* la primera ocurrencia de un evento que pueda ser considerado como proceso de Poisson.
+Si la variable aleatoria es ahora el tiempo transcurrido hasta que se verifica la primera ocurrencia, entonces será una /varible continua/. La probabilidad que T exceda algún valor t es lo mismo que decir que *no* se verificaron ocurrencias en ese intervalo de longitud, lo que es equivalente a decir que la variable aleatoria *N° de ocurrencias* de tipo Poisson toma el valor 0.
+
+\begin{align*}
+P(T>t) &= P(X=0) \\
+P(X=0 = \frac{ e^{-lambda} \lambda^0} {0!}= e^{\lambda}
+\end{align*}
+
+**** Función de distribución
+Esto permite obtener la función de distribución para la variable continua de tiempo T:
+
+\begin{align}
+F(t) = P(T \leq t) = 1-P(T>t)
+F(t) = 1-e^{-\lambdat} \quad \mbox{Función de distribución}
+\end{align}
+
+La función de densidad se obtiene derivando la expresión anterior:
+**** Función de densidad
+\begin{align}
+f(t) = \lambda e^{-\lambda t}
+\end{align}
+
+Cumpliendo con las propiedades de estacionariedad e independencia de los procesos de Poisson, e^{\lambdat} da la probabilidad de que no se verifiquen eventos en algún intervalo de tiempo de longitud t, estando o no en el origen en el tiempo 0.
+
+**** Esperanza
+$$
+E(T)= \frac{1}{\lambda}
+$$
+
+****
+$$
+Var(T) = \frac{2}{\lambda^2}
+$$
+
+Recordar que \lambda representa el número promedio de *ocurrencias en los procesos* Poisson, aquí 1/\lambda representa el tiempo *promedio entre ocurrencias*
+
+Una característica de los procesos de Poisson es que no tienen memoria. Esto significa que el comportamiento futuro es independiente de lo registrado en el presente o pasado. Para demostrarlo puede calcularse la probabilidad condicional de T dado que T>t_0, osea la probabilidad condicional del tiempo entre ocurrencias dado que no se han registrado ocurrencias antes del tiempo t_o; llegandose al final del cálculo a la misma expresión del modelo.
+
 
